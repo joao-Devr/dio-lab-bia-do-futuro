@@ -2,54 +2,45 @@
 
 ## Dados Utilizados
 
-Descreva se usou os arquivos da pasta `data`, por exemplo:
-
 | Arquivo | Formato | Utilização no Agente |
 |---------|---------|---------------------|
+| `perfil_comprador.json` | JSON | Identificar a capacidade de pagamento e o momento financeiro do usuário. |
+| `custos_veiculos.json` | JSON | Fornecer médias de custos ocultos (IPVA, seguro, manutenção) por categoria de veículo. |
+| `taxas_mercado.csv` | CSV | Base de cálculo para comparar financiamento, consórcio e compra à vista. |
+| `checklist_seguranca.json` | JSON | Guiar o usuário nos passos práticos (Consulta Detran, vistoria cautelar, tabela FIPE). |
 | `historico_atendimento.csv` | CSV | Contextualizar interações anteriores |
-| `perfil_investidor.json` | JSON | Personalizar recomendações |
-| `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
-| `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
-
-> [!TIP]
-> **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
 
 ---
 
 ## Adaptações nos Dados
 
-> Você modificou ou expandiu os dados mockados? Descreva aqui.
-
-[Sua descrição aqui]
+Os dados mockados foram construídos para refletir a realidade atual do mercado automotivo brasileiro. Foram incluídas taxas médias de juros praticadas pelos bancos (variando de 1.5% a 2.5% ao mês) e categorias genéricas de veículos (Hatch, Sedan, SUV) com estimativas de custos anuais. O objetivo não é dar o preço exato do carro, mas ensinar o impacto financeiro da compra.
 
 ---
 
 ## Estratégia de Integração
 
 ### Como os dados são carregados?
-> Descreva como seu agente acessa a base de conhecimento.
-
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos JSON e CSV são carregados via Python no back-end (Streamlit). Quando o usuário inicia a conversa e fornece sua renda e valor em caixa, o sistema filtra o `perfil_comprador.json` e busca as taxas no `taxas_mercado.csv`.
 
 ### Como os dados são usados no prompt?
-> Os dados vão no system prompt? São consultados dinamicamente?
-
-[Sua descrição aqui]
+Os dados filtrados são injetados dinamicamente no **System Prompt** do Ollama. O modelo não tem acesso direto aos arquivos, mas recebe um resumo em texto puro do perfil do cliente e das métricas de mercado relevantes para aquela interação, garantindo respostas embasadas e reduzindo alucinações.
 
 ---
 
 ## Exemplo de Contexto Montado
 
-> Mostre um exemplo de como os dados são formatados para o agente.
+```text
+Você é o Logan. Use os dados abaixo para aconselhar o usuário:
 
-```
 Dados do Cliente:
-- Nome: João Silva
-- Perfil: Moderado
-- Saldo disponível: R$ 5.000
+- Renda Mensal: R$ 4.000
+- Valor guardado: R$ 15.000
+- Objetivo: Primeiro carro (usado)
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
-...
-```
+Dados de Mercado Injetados:
+- Categoria Recomendada: Hatch Compacto (ex: Ônix, HB20, Gol).
+- Custo Anual Médio (IPVA + Seguro + Manutenção): R$ 4.500
+- Taxa média de financiamento atual: 1.8% a.m.
+
+Diretriz: Explique ao usuário que o custo do carro não é apenas a parcela. Calcule por cima quanto ele gastaria por mês mantendo um Hatch Compacto.

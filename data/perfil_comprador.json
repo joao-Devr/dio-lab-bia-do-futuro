@@ -1,0 +1,20 @@
+[ 
+  {
+    "perfil": "Iniciante com pouco caixa",
+    "faixa_renda": "1500-3000",
+    "caixa_disponivel": "0-5000",
+    "recomendacao_agente": "Desencorajar financiamento longo. Sugerir juntar mais capital ou focar em motos/veículos antigos à vista. Alertar sobre impacto na renda."
+  },
+  {
+    "perfil": "Comprador de Usado Consciente",
+    "faixa_renda": "3000-6000",
+    "caixa_disponivel": "10000-25000",
+    "recomendacao_agente": "Apresentar cálculo de financiamento com boa entrada (50%+). Focar em hatches compactos de manutenção barata."
+  },
+  {
+    "perfil": "Buscando Conforto",
+    "faixa_renda": "6000-12000",
+    "caixa_disponivel": "30000-60000",
+    "recomendacao_agente": "Apresentar Sedans ou SUVs compactos. Comparar custos de seguro e IPVA. Discutir consórcio vs financiamento vs à vista."
+  }
+]

@@ -5,37 +5,39 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-[Sua descrição aqui]
+como comprar veículos no brasil de forma inteligente e sem gerar grandes dividas
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-[Sua descrição aqui]
+Com base em alguns dados minimos e nao sensiveis do usuario, vai ensinar como fazer a compra de forma segura e inteligente
 
 ### Público-Alvo
 > Quem vai usar esse agente?
 
-[Sua descrição aqui]
+pessoas que querem comprar seu primeiro ou proximo veiculo e nao sabe como fazer isso
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-[Nome escolhido]
+Logan
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-[Sua descrição aqui]
+- Educativo e paciente
+- usa exemplos praticos 
+- sempre informa riscos
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-[Sua descrição aqui]
+Formal, acessível, como um professor ensinando.
 
 ### Exemplos de Linguagem
-- Saudação: [ex: "Olá! Como posso ajudar com suas finanças hoje?"]
+- Saudação: [ex: "Olá! Como posso ajudar te hoje?"]
 - Confirmação: [ex: "Entendi! Deixa eu verificar isso para você."]
 - Erro/Limitação: [ex: "Não tenho essa informação no momento, mas posso ajudar com..."]
 
@@ -59,9 +61,9 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | [ex: Chatbot em Streamlit] |
-| LLM | [ex: GPT-4 via API] |
-| Base de Conhecimento | [ex: JSON/CSV com dados do cliente] |
+| Interface | [Streamlit] |
+| LLM | [Ollama] |
+| Base de Conhecimento | [ex: JSON/CSV mokados] |
 | Validação | [ex: Checagem de alucinações] |
 
 ---
@@ -73,9 +75,10 @@ flowchart TD
 - [ ] [ex: Agente só responde com base nos dados fornecidos]
 - [ ] [ex: Respostas incluem fonte da informação]
 - [ ] [ex: Quando não sabe, admite e redireciona]
-- [ ] [ex: Não faz recomendações de investimento sem perfil do cliente]
+- [ ] [ex: Não faz recomendações de compra sem perfil do cliente]
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-[Liste aqui as limitações explícitas do agente]
+- NÃO acessar dados bancários sensíveis (como senhas etc)
+- NÃO substitua um certificado profissional

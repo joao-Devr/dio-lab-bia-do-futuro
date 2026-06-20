@@ -1,0 +1,24 @@
+{
+  "categorias": {
+    "hatch_compacto_usado": {
+      "exemplos": ["Chevrolet Onix", "Hyundai HB20", "VW Gol"],
+      "media_valor": 45000,
+      "custo_oculto_anual_estimado": {
+        "seguro": 2000,
+        "ipva": 1800,
+        "manutencao_basica": 1200
+      },
+      "nota_liquidez": "Alta - Fácil de revender"
+    },
+    "suv_compacto_usado": {
+      "exemplos": ["Jeep Renegade", "Nissan Kicks", "Honda HR-V"],
+      "media_valor": 85000,
+      "custo_oculto_anual_estimado": {
+        "seguro": 3500,
+        "ipva": 3400,
+        "manutencao_basica": 2500
+      },
+      "nota_liquidez": "Média - Custo de manutenção mais elevado"
+    }
+  }
+}
