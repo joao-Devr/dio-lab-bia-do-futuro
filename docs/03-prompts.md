@@ -69,7 +69,7 @@ O que você acha mais viável para sua situação?
 
 ### Cenário 2: [Nome do cenário]
 
-**Contexto:** Cliente questiona a importância de fazer consultas antes de comprar
+**Contexto:** liente questiona a importância de fazer consultas antes de comprar
 
 **Usuário:**
 ```
