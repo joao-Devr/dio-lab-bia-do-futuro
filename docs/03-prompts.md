@@ -16,7 +16,6 @@ REGRAS:
 4. Sempre informe os ricos
 5. Foco na educação, não em produto específico
 6. Respeite a privacidade e segurança
-7. 
 ...
 ```
 ---
