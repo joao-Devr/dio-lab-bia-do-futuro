@@ -2,10 +2,16 @@ import json
 import pandas as pd
 import requests
 import streamlit as st
+from groq import Groq
 
 # CONFIGURAÇÕES DO AGENTE
-OLLA_API_URL = "http://localhost:11434/api/generate"
-modelo = "qwen2.5-coder:7b"
+GROQ_API_KEY = ""
+modelo = "llama-3.1-8b-instant"
+
+client = Groq(api_key=GROQ_API_KEY)
+
+# OLLA_API_URL = "http://localhost:11434/api/generate"
+# modelo = "qwen2.5-coder:7b"
 
 # CARREGANDO DADOS
 perfil = json.load(open('./data/perfil_comprador.json'))
@@ -126,23 +132,68 @@ O que você acha? Consegue esperar ou quer explorar essas alternativas?
 # CHAMA O AGENTE COM O CONTEXTO E O SYSTEM PROMPT
 
 
-def chamar_agente(pergunta_usuario):
-    prompt = f"""{SYSTEM_PROMPT}
+# def chamar_agente(pergunta_usuario):
+#     prompt = f"""{SYSTEM_PROMPT}
 
-    Conteúdo do contexto:
-    {contexto}
+#     Conteúdo do contexto:
+#     {contexto}
     
-    Pergunta do usuário:
-    {pergunta_usuario}
-"""
+#     Pergunta do usuário:
+#     {pergunta_usuario}
+# """
     
-    r = requests.post(OLLA_API_URL, json={"model": modelo,"prompt": prompt, "stream": False})
-    return r.json()['response']
+#     r = requests.post(OLLA_API_URL, json={"model": modelo,"prompt": prompt, "stream": False})
+#     return r.json()['response']
+
+
+def chamar_agente(pergunta_usuario):
+    """Chama Groq API"""
+    try:
+        mensagens = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": pergunta_usuario}
+        ]
+        
+        resposta = client.chat.completions.create(
+            model=modelo,
+            messages=mensagens,
+            max_tokens=1024,
+            temperature=0.7
+        )
+        
+        return resposta.choices[0].message.content
+    
+    except Exception as e:
+        return f"❌ Erro: {str(e)}"
 
     # Interface com Streamlit
 st.title("🎓 Logan, o Educador de Compra de Veículos")
+st.markdown("*Orientação inteligente e segura para compra de veículos no Brasil*")
 
-if pergunta := st.chat_input("Sua dúvida sobre compras..."):
-    st.chat_message("user").write(pergunta)
-    with st.spinner("..."):
-        st.chat_message("assistant").write(chamar_agente(pergunta))
+
+# if pergunta := st.chat_input("Sua dúvida sobre compras..."):
+#     st.chat_message("user").write(pergunta)
+#     with st.spinner("..."):
+#         st.chat_message("assistant").write(chamar_agente(pergunta))
+
+
+# Chat com histórico
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Exibir histórico
+for msg in st.session_state.messages:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
+
+# Input do usuário
+if pergunta := st.chat_input("Sua dúvida sobre compra de carros..."):
+    # Adicionar pergunta ao histórico
+    st.session_state.messages.append({"role": "user", "content": pergunta})
+    st.chat_message("user").markdown(pergunta)
+    
+    # Chamar agente
+    with st.spinner("Logan está analisando..."):
+        resposta = chamar_agente(pergunta)
+        st.session_state.messages.append({"role": "assistant", "content": resposta})
+        st.chat_message("assistant").markdown(resposta)
