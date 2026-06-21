@@ -1,149 +1,180 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 🎓 Logan - Orientação em Compra de Veículos
 
-## Contexto
-
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
-
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+Um assistente educativo inteligente que ajuda brasileiros a comprar veículos de forma segura e inteligente, sem gerar grandes dívidas.
 
 ---
 
-## O Que Você Deve Entregar
+## 📋 Sobre o Projeto
 
-### 1. Documentação do Agente
+**Logan** é um agente de IA que ensina como comprar veículos no Brasil de forma consciente. Ele:
 
-Defina **o que** seu agente faz e **como** ele funciona:
+✅ Analisa sua renda e capacidade financeira  
+✅ Compara opções (financiamento, consórcio, à vista)  
+✅ Alerta sobre riscos financeiros  
+✅ Usa dados reais de taxas e custos do mercado  
+✅ Oferece alternativas seguras e realistas  
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
-
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
-
----
-
-### 2. Base de Conhecimento
-
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+**Não é um vendedor** - é um educador financeiro que quer capacitar você a tomar melhores decisões.
 
 ---
 
-### 3. Prompts do Agente
+## 🚀 Como Instalar
 
-Documente os prompts que definem o comportamento do seu agente:
+### 1️⃣ Clonar o repositório
+```bash
+git clone https://github.com/joao-Devr/dio-lab-bia-do-futuro.git
+cd dio-lab-bia-do-futuro
+```
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
+### 2️⃣ Criar ambiente virtual
+```bash
+python -m venv venv
 
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
+# Windows
+venv\Scripts\activate
 
----
+# Linux/Mac
+source venv/bin/activate
+```
 
-### 4. Aplicação Funcional
+### 3️⃣ Instalar dependências
+```bash
+pip install -r requirements.txt
+```
 
-Desenvolva um **protótipo funcional** do seu agente:
+### 4️⃣ Configurar API Key do Groq
 
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
+#### Opção A: Adicionar direto no código (não recomendado)
+```python
+GROQ_API_KEY = "gsk_sua_chave_aqui"
+```
 
-📁 **Pasta:** [`src/`](./src/)
+#### Opção B: Usar arquivo de secrets (recomendado)
+Criar arquivo `.streamlit/secrets.toml`:
+```toml
+GROQ_API_KEY = "gsk_sua_chave_aqui"
+```
 
----
-
-### 5. Avaliação e Métricas
-
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
+**Como pegar a chave:**
+1. Acesse https://console.groq.com/keys
+2. Crie uma conta (grátis)
+3. Copie sua API Key
 
 ---
 
-## Ferramentas Sugeridas
+## ▶️ Como Rodar
 
-Todas as ferramentas abaixo possuem versões gratuitas:
+### Rodar a aplicação
+```bash
+streamlit run app.py
+```
 
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
+A aplicação vai abrir em `http://localhost:8501`
 
----
-
-## Estrutura do Repositório
+### Exemplos de Perguntas para Testar
 
 ```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+❓ "Ganho R$ 2.500/mês e tenho R$ 3.000 guardado. Consigo comprar um carro?"
+
+❓ "Qual é melhor: financiamento ou consórcio?"
+
+❓ "Quanto custa manter um carro novo por mês?"
+
+❓ "Encontrei um carro por R$ 50.000. Faz sentido para mim?"
 ```
 
 ---
 
-## Dicas Finais
+## 📁 Estrutura de Pastas
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+```
+projeto/
+├── src/
+|   └── app.py                      # Aplicação principal (Streamlit)
+|   └── requirements.txt            # Dependências Python
+│
+├── data/                           # Dados Mokados
+│   └── perfil_comprador.json       # Perfil do usuário
+│   └── taxas_mercado.csv           # Taxas de financiamento/consórcio
+│   └── custos_veiculos.json        # Custos de manutenção por tipo
+│   └── historico_atendimento.csv   # Histórico de conversas
+|
+├── docs/
+|   └── 01-documentacao-agente.md   # Descricao do Agente
+|   └── 02-base-conhecimento.md     # Descricao dos dados utilizados
+|   └── 03-prompts.md               # System Prompt 
+|   └── 04-metricas.md              # Avaliação e Métrica
+|
+└── README.md                       # Este arquivo
+```
+
+---
+
+## 🛠️ Tecnologias Usadas
+
+- **Python 3.9+** - Linguagem principal
+- **Streamlit** - Interface web interativa
+- **Groq API** - LLM para respostas inteligentes
+- **Pandas** - Processamento de dados (CSV)
+- **JSON** - Armazenamento de configurações
+
+---
+
+## 📊 Dados Utilizados
+
+### Taxas de Mercado
+```
+Financiamento CDC:    1.8% a.m.  (entrada mínima 20%)
+Consórcio:            0.15% adm  (sem juros)
+Empréstimo Pessoal:   4.5% a.m.  (NUNCA recomendar)
+```
+
+### Custos de Veículos
+```
+Hatch Compacto (Onix, HB20, Gol):
+  - Valor: ~R$ 45.000
+  - Custos anuais: R$ 5.000
+
+SUV Compacto (Renegade, Kicks):
+  - Valor: ~R$ 85.000
+  - Custos anuais: R$ 9.400
+```
+
+---
+
+## 📝 Exemplo de Resposta do Logan
+
+**Entrada:**
+```
+Ganho R$ 2.000/mês e quero financiar um Hatch novo de R$ 60.000.
+Quanto fica a parcela?
+```
+
+**Saída (Logan):**
+```
+SUA SITUAÇÃO:
+- Renda: R$ 2.000/mês
+- Máximo seguro (30%): R$ 600/mês
+
+SIMULAÇÃO - HATCH NOVO:
+- Parcela: ~R$ 1.430/mês
+- Custos (IPVA/Seguro): ~R$ 300/mês
+TOTAL: ~R$ 1.730/mês
+
+🚨 Você gastaria 86% da sua renda!
+
+ALTERNATIVAS:
+1. Esperar 6-8 meses e juntar mais capital
+2. Considerar hatch usado (R$ 25-30k)
+3. Explorar consórcio
+```
+
+---
+
+## 👨‍💻 Autor
+
+**João Pedro** ([@joao-Devr](https://github.com/joao-Devr))
+
+Desenvolvido como projeto educativo de IA e Finanças.
+
+---
