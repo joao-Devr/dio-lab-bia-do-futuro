@@ -1,7 +1,6 @@
   {
     "nome": "João Silva",
     "perfil": "Iniciante com pouco caixa",
-    "faixa_renda": "1500-3000",
-    "caixa_disponivel": "0-5000",
-    "recomendacao_agente": "Desencorajar financiamento longo. Sugerir juntar mais capital ou focar em motos/veículos antigos à vista. Alertar sobre impacto na renda."
+    "renda_mensal": "2500",
+    "caixa_disponivel": "2000"
   }
